@@ -1,0 +1,102 @@
+{
+  "jobs": [
+    {
+      "id": 1,
+      "company": {
+        "name": "ThinkSoft.io",
+        "links": {
+          "website": "https://www.thinksoft.io/"
+        }
+      },
+      "experiences": [
+        {
+          "id": 1,
+          "title": "Full Stack Engineer",
+          "startDate": "2022-03-01",
+          "endDate": "2022-09-01",
+          "highlights": [
+            "Developed role-based fintech application for startups to manage financials for multiple projects.",
+            "Designed and architected the backend, and implemented 3 statement financial model with inline table cells editing.",
+            "Integrated third-party accounting services, automating bookkeeping imports and optimizing operational efficiency."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "company": {
+        "name": "Upwork",
+        "links": {
+          "website": "https://www.upwork.com/freelancers/~0178002215a1a4763d"
+        }
+      },
+      "experiences": [
+        {
+          "id": 1,
+          "title": "Full Stack Engineer",
+          "startDate": "2022-03-01",
+          "endDate": "2023-06-01",
+          "highlights": [
+            "Provided services with a 100% Job Success Rate and received a top-rated badge (among the top 10%).",
+            "Reduced response time of a web app by 80% by optimizing it for static site generation.",
+            "Wrote a script to scrape 30,000+ web front-ends, serving as the main data source for a lead generation startup.",
+            "Authored comprehensive technical documentation for a multi-tenant E-Commerce platform, accelerating onboarding by 25+ hours.",
+            "Pair programmed LegalHive(ChatGPT for lawyers) to allow lawyers to conversate against legal documents."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "company": {
+        "name": "QLU.ai",
+        "links": {
+          "website": "https://qlu.ai/"
+        }
+      },
+      "experiences": [
+        {
+          "id": 1,
+          "title": "Lead Software Engineer",
+          "startDate": "2023-10-01",
+          "endDate": "2024-08-01",
+          "highlights": [
+            "Spearheaded the development of our AI-powered Executive Recruitment tool from prototype to beta launch resulting in a $5 million deal.",
+            "Reduced the backend API latency time by 500ms(>50%) across the application.",
+            "Engineered caching mechanisms for third-party resources, enhancing performance and reducing costs, while seamlessly overhauling auth during a cloud migration, cutting monthly expenses by $7K, and achieving zero downtime.",
+            "Architected a solution to integrate independently prototyped products into our core app to help create the ecosystem.",
+            "Implemented an algorithm for matching our 60M profiles with our partner’s internal database critical in the continuation of the multi-million deal."
+          ]
+        },
+        {
+          "id": 2,
+          "title": "Senior Full Stack Engineer",
+          "startDate": "2023-06-01",
+          "endDate": "2023-10-01",
+          "highlights": [
+            "Engineered and secured an admin panel, improving system monitoring efficiency and ensuring robust access control.",
+            "Resolved front-end bottlenecks and refactored core features while mentoring a team to deliver production-grade code, boosting UX metrics, increasing user retention by 25%, and reducing bug rates by 20% within 3 months.",
+            "Automated CI/CD pipelines, cutting deployment time by 50% across multi-service architectures.",
+            "Directed vulnerability mitigation from penetration testing reports, enabling SOC-2 certification essential for securing and maintaining trust with B2B clients."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "company": {
+        "name": "aiconver GmbH",
+        "links": {
+          "website": "https://aiconver.com/"
+        }
+      },
+      "experiences": [
+        {
+          "id": 1,
+          "title": "WerkStudent Software Engineer",
+          "startDate": "2024-10-01"
+        }
+      ]
+    }
+  ]
+}

@@ -4,18 +4,64 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #5b5b5b;
+  --highlight: #000000;
+  --primary: #0d9488;
+  --secondary: #c2c2c2;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html.dark {
+  --background: #111111;
+  --foreground: #a1a1a1;
+  --highlight: #ffffff;
+  --primary: #2dd4bf;
+  --secondary: #374151;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans);
+}
+
+h1 {
+  font-size: 1.476rem;
+  font-family: var(--font-geist-mono);
+}
+
+h2 {
+  font-size: 1.383rem;
+  font-family: var(--font-geist-mono);
+}
+
+h3 {
+  font-size: 1.296rem;
+  font-family: var(--font-geist-mono);
+}
+
+h4 {
+  font-size: 1.215rem;
+  font-family: var(--font-geist-mono);
+}
+
+h5 {
+  font-size: 1.138rem;
+  font-family: var(--font-geist-mono);
+}
+
+h6 {
+  font-size: 1.067rem;
+  font-family: var(--font-geist-mono);
+}
+
+p {
+  font-size: 1rem;
+}
+
+small {
+  font-size: 0.937rem;
+}
+
+strong {
+  color: var(--highlight);
 }
