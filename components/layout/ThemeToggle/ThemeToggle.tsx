@@ -21,12 +21,14 @@ function ThemeToggle() {
   const onToggle = () => {
     const nextTheme =
       themeOptions[(themeOptions.indexOf(theme) + 1) % themeOptions.length];
-    toggle(nextTheme as ThemeOptions);
+    toggle(nextTheme as ThemeOptions, true);
   };
 
-  const toggle = useCallback((inputTheme: ThemeOptions) => {
+  const toggle = useCallback((inputTheme: ThemeOptions, manual: boolean) => {
     setTheme(inputTheme);
-    localStorage.setItem("theme", inputTheme);
+    if (manual) {
+      localStorage.setItem("theme", inputTheme);
+    }
     window.document.documentElement.classList.toggle(
       "dark",
       inputTheme === "dark"
@@ -38,22 +40,26 @@ function ThemeToggle() {
     const savedTheme = localStorage.getItem("theme");
 
     if (savedTheme && isThemeOption(savedTheme)) {
-      toggle(savedTheme);
+      toggle(savedTheme, true);
       return;
     }
 
     const prefersDarkQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const prefersDark = prefersDarkQuery.matches;
 
-    toggle(prefersDark ? "dark" : "light");
+    toggle(prefersDark ? "dark" : "light", false);
 
     const handleEvent = (ev: MediaQueryListEvent) => {
-      toggle(ev.matches ? "dark" : "light");
+      // shouldn't change the theme based on system settings when user has explicitly changed the theme
+      const selection = localStorage.getItem("theme");
+      if (!selection || !isThemeOption(selection)) {
+        toggle(ev.matches ? "dark" : "light", false);
+      }
     };
 
     prefersDarkQuery.addEventListener("change", handleEvent);
 
-    return prefersDarkQuery.removeEventListener("change", handleEvent);
+    return () => prefersDarkQuery.removeEventListener("change", handleEvent);
   }, [toggle]);
 
   if (!isMounted) return null;
