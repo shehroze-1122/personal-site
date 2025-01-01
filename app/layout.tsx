@@ -20,6 +20,20 @@ export const metadata: Metadata = {
   title: "Shehroze Talat",
   description:
     "Shehroze Talat is a Full-Stack Software Engineer based in Germany. This is his personal website featuring his work experience, bio and tech blogs around web.",
+  openGraph: {
+    title: "Shehroze Talat",
+    description:
+      "Shehroze Talat is a Full-Stack Software Engineer based in Germany. This is his personal website featuring his work experience, bio and tech blogs around web.",
+    url: "https://shehroze.vercel.app",
+    siteName: "Shehroze Talat",
+    images: ["/opengraph.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@shehrozett",
+    creator: "@shehrozett",
+  },
+  metadataBase: new URL("https://shehroze.vercel.app"),
 };
 
 export default function RootLayout({
