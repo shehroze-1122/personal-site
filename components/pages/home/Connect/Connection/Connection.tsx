@@ -1,8 +1,11 @@
 import React from "react";
 import ExternalLink from "@/components/common/ExternalLink";
-import { ConnectionType } from "../Connect";
 
-type ConnectionProps = ConnectionType;
+type ConnectionProps = {
+  type: string;
+  href: string;
+  label: string;
+};
 
 function Connection({ type, href, label }: ConnectionProps) {
   return (

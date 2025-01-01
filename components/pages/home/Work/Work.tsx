@@ -1,6 +1,6 @@
 import React from "react";
+import data from "@/data/personal/work.json";
 import Job from "./Job";
-import data from "./data.json";
 
 function Work() {
   const jobs = [...data.jobs].reverse();
