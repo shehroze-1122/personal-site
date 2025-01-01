@@ -1,7 +1,7 @@
-import Separator from "./_components/common/Separator";
-import About from "./_components/pages/home/About";
-import Connect from "./_components/pages/home/Connect";
-import Work from "./_components/pages/home/Work/Work";
+import Separator from "@/components/common/Separator";
+import About from "@/components/pages/home/About";
+import Connect from "@/components/pages/home/Connect";
+import Work from "@/components/pages/home/Work/Work";
 
 export default function Home() {
   return (

@@ -1,6 +1,7 @@
-import IconLink from "@/app/_components/common/IconLink";
 import React from "react";
+import IconLink from "@/components/common/IconLink";
 import { GitHub, Linkedin, Mail } from "react-feather";
+
 const data = [
   {
     key: "email",

@@ -1,6 +1,6 @@
 "use client";
 
-import InternalLink from "@/app/_components/common/InternalLink";
+import InternalLink from "@/components/common/InternalLink";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
 import React from "react";

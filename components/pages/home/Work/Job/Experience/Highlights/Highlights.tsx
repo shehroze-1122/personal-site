@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
-import { Highlight } from "../../Job";
-import Button from "@/app/_components/common/Button";
+import Button from "@/components/common/Button";
 import { ChevronRight, ChevronDown } from "react-feather";
+import { Highlight } from "../../Job";
 
 type HighlightsProps = { data: Highlight[] };
 

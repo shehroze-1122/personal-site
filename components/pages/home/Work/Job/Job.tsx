@@ -1,6 +1,6 @@
 import React from "react";
 import Experience from "./Experience";
-import ExternalLink from "@/app/_components/common/ExternalLink";
+import ExternalLink from "@/components/common/ExternalLink";
 
 export type Highlight = string;
 

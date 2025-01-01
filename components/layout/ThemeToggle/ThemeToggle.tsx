@@ -1,7 +1,7 @@
 "use client";
 import React, { useCallback, useEffect, useState } from "react";
 import { Moon, Sun } from "react-feather";
-import IconButton from "../../common/IconButton/IconButton";
+import IconButton from "@/components/common/IconButton/IconButton";
 
 type ThemeOptions = "dark" | "light";
 const themeOptions = ["dark", "light"];

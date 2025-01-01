@@ -1,6 +1,6 @@
 import React from "react";
+import ExternalLink from "@/components/common/ExternalLink";
 import { ConnectionType } from "../Connect";
-import ExternalLink from "@/app/_components/common/ExternalLink";
 
 type ConnectionProps = ConnectionType;
 
