@@ -17,23 +17,36 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Shehroze Talat",
+  title: {
+    default: "Shehroze Talat",
+    template: "%s | Shehroze",
+  },
   description:
     "Shehroze Talat is a Full-Stack Software Engineer based in Germany. This is his personal website featuring his work experience, bio and tech blogs around web.",
+  metadataBase: new URL("https://shehroze.vercel.app"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Shehroze Talat",
+    title: {
+      default: "Shehroze Talat",
+      template: "%s | Shehroze",
+    },
     description:
       "Shehroze Talat is a Full-Stack Software Engineer based in Germany. This is his personal website featuring his work experience, bio and tech blogs around web.",
     url: "https://shehroze.vercel.app",
     siteName: "Shehroze Talat",
-    images: ["/opengraph.png"],
+    images: ["/opengraph-default.png"],
   },
   twitter: {
     card: "summary_large_image",
     site: "@shehrozett",
     creator: "@shehrozett",
   },
-  metadataBase: new URL("https://shehroze.vercel.app"),
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
