@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Header from "@/app/_components/layout/Header";
 import { initTheme } from "@/lib/initTheme";
+import config from "@/config";
 import "./globals.css";
 import Footer from "./_components/layout/Footer";
 import Separator from "./_components/common/Separator";
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
   },
   description:
     "Shehroze Talat is a Full-Stack Software Engineer based in Germany. This is his personal website featuring his work experience, bio and tech blogs around web.",
-  metadataBase: new URL("https://shehroze.vercel.app"),
+  metadataBase: new URL(config.baseUrl),
   alternates: {
     canonical: "/",
   },
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
     },
     description:
       "Shehroze Talat is a Full-Stack Software Engineer based in Germany. This is his personal website featuring his work experience, bio and tech blogs around web.",
-    url: "https://shehroze.vercel.app",
+    url: config.baseUrl,
     siteName: "Shehroze Talat",
     images: ["/opengraph-default.png"],
   },
