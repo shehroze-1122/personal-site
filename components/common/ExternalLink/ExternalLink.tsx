@@ -11,7 +11,7 @@ function ExternalLink({
 }: ExternalLinkProps) {
   const classNames = twMerge(
     clsx(
-      "flex flex-row gap-1 items-center text-highlight decoration-1 decoration-primary underline hover:decoration-4",
+      "inline-flex flex-row gap-1 items-center text-highlight decoration-1 decoration-primary underline hover:decoration-4",
       className
     )
   );

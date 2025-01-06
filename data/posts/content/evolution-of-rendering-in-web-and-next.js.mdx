@@ -1,0 +1,357 @@
+Web development nowadays involves terminologies, such as **SSG** (Static Site Generation), **SSR** (Server-Side Rendering), **CSR** (Client-Side Rendering), **ISR** (Incremental Static Regeneration), **Server Components**, and **Client Components**. Some of these are specific to **React/Next.js**, while others are general techniques for the **web**. The aim of this post is to demystify these concepts by defining each term individually and exploring how they relate to one another.
+
+## CSR:
+
+Client-Side Rendering (CSR) involves rendering and generating webpage content directly in the client’s browser using JavaScript. In this approach, the server typically provides an almost empty HTML document containing a single empty `<div>` element, often identified by an ID. JavaScript then uses this ID to populate the element with actual content after preparing it, which may involve making API calls to fetch the necessary data for the page. While CSR can be achieved with plain JavaScript, frameworks and libraries like React, Vue, and Svelte make it significantly easier to write interactive client-side code. Any application built with the above-mentioned technologies, without leveraging their server-side rendering capabilities, uses CSR.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>React CSR Demo</title>
+    <!-- Load React -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <!-- Babel is needed for JSX transformation in the browser -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+  </head>
+  <body>
+    <!-- Root element where React will mount our application -->
+    <div id="root"></div>
+
+    <!-- React component and mounting code -->
+    <!-- type="text/babel" is required for JSX transformation -->
+    <script type="text/babel">
+      // Simple counter component demonstrating state management
+      const CounterApp = () => {
+        // Initialize state with useState hook
+        // count: current state value
+        // setCount: function to update the state
+        const [count, setCount] = React.useState(0);
+
+        // Render UI with current count and control buttons
+        return (
+          <div>
+            <h1>Counter: {count}</h1>
+            {/* Increment button - updates state by adding 1 \*/}
+            <button onClick={() => setCount(count + 1)}>Increment</button>
+            {/* Decrement button - updates state by subtracting 1 */}
+            <button onClick={() => setCount(count - 1)}>Decrement</button>
+          </div>
+        );
+      };
+
+      // Create a root for React to render into
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      // Render our CounterApp component into the root
+      root.render(<CounterApp />);
+    </script>
+  </body>
+</html>
+```
+
+## SSR:
+
+Server Side Rendering renders the webpage content on the server. More specifically though, it is coined for **client-side frameworks** like React, Preact, Vue, and Svelte, etc. to refer to their ability to render the HTML from their application code(e.g. a React component) on the server instead of the client. That HTML content can then be sent back as a response to the browser which renders it on the screen.
+
+So, instead of receiving a blank HTML document with one single empty div serving as an entry point, as is the case in **CSR**, the browser receives a fully generated HTML document that doesn’t have to wait for the JavaScript bundle to be downloaded & executed before showing anything on the screen. It speeds up the **initial load times** of the pages and it's good for SEO since some **crawlers** don’ run JavaScript.
+
+In its true sense, in SSR, we render the HTML payload for the page on the server capturing the initial state of the page. If we consider React, then this page would simply be a component. It doesn’t have any specialties when compared to a **client-side rendered component**. Then, this HTML payload along with the required JavaScript bundle for the page will be sent to the client. The client first renders the HTML for the user to see something on the screen immediately while the browser downloads & parses the JavaScript bundle. The JavaScript bundle includes react which now takes over the DOM & makes the static HTML initially rendered, interactive again, and manages all the client-side manipulations as it would in CSR. This process of reaction taking over the DOM is called **_hydration_**.
+
+```javascript
+// server.js
+import express from "express";
+import React from "react";
+import { renderToString } from "react-dom/server";
+import { App } from "./App.js";
+
+const server = express();
+
+// Handle incoming requests
+server.get("/", (req, res) => {
+  // Render React component to string
+  const initialHtml = renderToString(<App />);
+
+  // Send complete HTML with hydration script
+  res.send(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>React SSR Demo</title>
+        </head>
+        <body>
+            <!-- Server rendered content -->
+            <div id="root">${initialHtml}</div>
+
+            <!-- Hydration script -->
+            <script src="/client.js"></script>
+        </body>
+        </html>
+    `);
+});
+
+// Serve client-side bundle
+server.use(express.static("public"));
+
+server.listen(3000, () => {
+  console.log("Server running on http://localhost:3000");
+});
+```
+
+```javascript
+// App.js
+export const App = () => {
+  // This state will be initialized on client after hydration
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <h1>Counter: {count}</h1>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+      <button onClick={() => setCount(count - 1)}>Decrement</button>
+    </div>
+  );
+};
+```
+
+```javascript
+// client.js
+import React from "react";
+import { hydrateRoot } from "react-dom/client";
+import { App } from "./App.js";
+
+// Hydrate the server-rendered content
+hydrateRoot(document.getElementById("root"), <App />);
+```
+
+```json
+// package.json
+{
+  "name": "react-ssr-example",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
+```
+
+This example mirrors the CSR approach but utilizes Server-Side Rendering (SSR) with Express as the backend framework. Using the **Next.js app router**, we can achieve the same functionality while eliminating the need for boilerplate code, as shown below:
+
+```tsx
+// app/page.tsx
+"use client";
+import { useState } from "react";
+
+export default function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <main>
+      <h1>Next.js SSR Counter</h1>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+      <button onClick={() => setCount(count - 1)}>Decrement</button>
+    </main>
+  );
+}
+```
+
+We’ll discuss the _“use client”_ directive in the [**Client Components**](#client-components) section.
+
+## Server Components:
+
+Server Components are components rendered exclusively on the server, with their JavaScript neither bundled nor sent to the client. As a result, Server Components are non-interactive. However, this limitation grants them a unique advantage: they can directly access server-side functionality, such as **querying databases** or interacting with third-party services, right within the component itself.
+
+```tsx
+// app/page.tsx
+import { getUsers } from "../lib/db";
+
+export default async function UsersPage() {
+  const users = await getUsers();
+
+  return (
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">Users</h1>
+      <ul className="space-y-2">
+        {users.map((user) => (
+          <li key={user.id} className="bg-white shadow rounded-lg p-4">
+            <h2 className="text-xl font-semibold">{user.name}</h2>
+            <p className="text-gray-600">{user.email}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+
+Now, **how does it compare with SSR**? A server component uses SSR as it renders on the server, with the restriction that it only renders on the server. There is no Javascript that’s required to be sent down for server components.
+
+## Client Components:
+
+Client Components enable the creation of conventional client-side interactive React components, allowing the use of React lifecycle hooks, browser and DOM APIs, and more. React components used in **CSR** and **SSR** are examples of Client Components.
+
+Interestingly, Client Components are also **(pre)rendered** on the server. This aligns with classic SSR, where the component is initially rendered on the server to generate the HTML for the page’s initial content. The server then bundles the necessary JavaScript to enable **interactivity** and sends it to the browser.
+
+In the context of Next.js, components in the **pages** directory can be viewed as Client Components that are server-rendered (SSR). However, it was possible to opt out of SSR for certain components by importing them through `next/dynamic` . With the **app router**, marking a component as a Client Component requires the _“use client”_ directive at the top of the file.
+
+## SSG:
+
+Static Site Generation refers to generating one or more pages that may or may not depend on external data at build time and re-using them across requests.
+
+```tsx
+// app/about.tsx
+export default function AboutPage() {
+  return (
+    <div>
+      <h1>About GreenTech Solutions</h1>
+      <p>
+        GreenTech Solutions, founded in 2010, is a leader in sustainable
+        technology. We create eco-friendly products that help protect our
+        planet.
+      </p>
+      <h2>Our Mission</h2>
+      <p>
+        To pioneer sustainable technologies that drive positive environmental
+        change.
+      </p>
+      <h2>Our Team</h2>
+      <p>
+        We are a diverse team of 500+ employees worldwide, including engineers,
+        designers, and environmental scientists.
+      </p>
+      <a href="/">Back to Home</a>
+    </div>
+  );
+}
+```
+
+Since this page’s content is **static**, the HTML for this can be generated at build time and **reused** across requests without having to rerender at request time.
+
+For use cases like products, blogs, etc. we can even use SSG for pages that do require external data for the content and the page paths(slugs).
+
+```tsx
+// app/products/[id]/page.tsx
+import { getAllProductIds, getProductById } from "@/lib/db";
+
+export async function generateStaticParams() {
+  const productIds = await getAllProductIds();
+  return productIds.map((id) => ({ id }));
+}
+
+export default async function ProductPage({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const product = await getProductById(params.id);
+
+  return (
+    <div>
+      <h1>{product.name}</h1>
+      <p>{product.description}</p>
+    </div>
+  );
+}
+```
+
+Now, Next.js would fetch all the product IDs & the product details in the _ProductPage_ and render all these pages at **build time** and serve them statically.
+
+In the 2 examples above, we’re purely using Server Components in generating static sites but we could even use Client Components. The difference would be that instead of just creating the HTML payload at build time, we’ll also generate the **JS bundle** and re-use it across requests.
+
+## ISR:
+
+Incremental Static Regeneration— quite the mouthful — allows us to update static content without rebuilding the entire site, making it possible to handle large volumes of static content without significantly increasing build times. While our earlier SSG example for generating product pages works, it is overly simplified.
+
+Here are a few concerns:
+
+1.  **Scalability:** Real-world applications often have thousands or even millions of products, making it impractical to generate static pages for all of them during the build process.
+2.  **Dynamic Content Updates:** The example assumes that static content never changes, which is rarely true in real-world scenarios.
+
+Here’s how ISR helps to overcome **Scalability** issues:
+
+Instead of generating the static pages for all the products, we generate them only for a few pages. For others, we configure Next.js, to process the pages not cached at the request time, generate the page, send it back & save it in cache for future requests.
+
+```tsx
+// app/products/[id]/page.tsx
+import { getImportantProductIds, getProductById } from "@/lib/db";
+
+export async function generateStaticParams() {
+  const productIds = await getImportantProductIds();
+  return productIds.map((id) => ({ id }));
+}
+// We'll prerender only the params from \`generateStaticParams\` at build time.
+// If a request comes in for a path that hasn't been generated,
+// Next.js will server-render the page on-demand.
+export const dynamicParams = true; // or false, to 404 on unknown paths
+
+export default async function ProductPage({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const product = await getProductById(params.id);
+
+  return (
+    <div>
+      <h1>{product.name}</h1>
+      <p>{product.description}</p>
+    </div>
+  );
+}
+```
+
+For **Dynamic Content Updates**:
+
+We set a revalidation period for the page to revalidate and update the content after a certain period.
+
+```tsx
+// app/products/[id]/page.tsx
+import { getImportantProductIds, getProductById } from "@/lib/db";
+
+export async function generateStaticParams() {
+  const productIds = await getImportantProductIds();
+  return productIds.map((id) => ({ id }));
+}
+
+// Next.js will invalidate the cache when a
+// request comes in, at most once every 60 seconds.
+export const revalidate = 60;
+
+// We'll prerender only the params from \`generateStaticParams\` at build time.
+// If a request comes in for a path that hasn't been generated,
+// Next.js will server-render the page on-demand.
+export const dynamicParams = true; // or false, to 404 on unknown paths
+
+export default async function ProductPage({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const product = await getProductById(params.id);
+
+  return (
+    <div>
+      <h1>{product.name}</h1>
+      <p>{product.description}</p>
+    </div>
+  );
+}
+```
+
+Now, overall, here’s how this page works:
+
+- During the `next build` process, pages returned by `generateStaticParams` are generated and cached.
+- If a page not generated at build time is requested, it is dynamically generated on the server, returned to the client, and cached for future requests.
+- For up to 60 seconds after a page is cached, subsequent requests will be served the cached version.
+- The first request after the 60-second caching window will still serve the cached (**now stale**) content. However, in the background, the page is **regenerated** and the cache is updated with the new version.
+- Subsequent requests for that page will be served the updated content.
+
+And that’s it for this one!

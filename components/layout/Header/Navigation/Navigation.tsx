@@ -21,7 +21,8 @@ function Navigation() {
 
   const getClasses = (path: string) =>
     clsx({
-      "decoration-4 text-highlight": path === pathname,
+      "decoration-4 text-highlight":
+        path === pathname || (path !== "/" && pathname.startsWith(path)),
     });
   return (
     <nav className="flex gap-3">

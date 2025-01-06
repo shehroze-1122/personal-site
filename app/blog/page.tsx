@@ -1,5 +1,8 @@
-import { Metadata } from "next";
 import React from "react";
+import { Metadata } from "next";
+import Section from "@/components/common/Section";
+import { getAllPosts } from "@/lib/api/posts";
+import PostCard from "@/components/common/PostCard";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -13,7 +16,22 @@ export const metadata: Metadata = {
 };
 
 function BlogPage() {
-  return <h2>Coming soon...</h2>;
+  const allPosts = getAllPosts({ sorted: true });
+  return (
+    <Section title="Blogs">
+      {allPosts.map((post) => (
+        <PostCard
+          key={post.slug}
+          title={post.title}
+          tags={post.tags}
+          slug={post.slug}
+          minutesToRead={post.minutesToRead}
+          thumbnailUrl={post.thumbnailUrl}
+          createdAt={post.createdAt}
+        />
+      ))}
+    </Section>
+  );
 }
 
 export default BlogPage;
