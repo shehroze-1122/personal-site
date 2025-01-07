@@ -4,7 +4,7 @@ import Links from "./Links";
 
 function Footer() {
   return (
-    <footer className="flex flex-row justify-between items-center font-mono max-xs:flex-col-reverse max-xs:items-center max-xs:gap-3">
+    <footer className="mt-14 flex flex-row justify-between items-center font-mono max-xs:flex-col-reverse max-xs:items-center max-xs:gap-3">
       <CopyRight />
       <Links />
     </footer>
