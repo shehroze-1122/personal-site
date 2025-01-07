@@ -68,7 +68,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen min-w-full`}
       >
-        <div className="px-10 py-20 max-w-screen-sm mx-auto">
+        <div className="px-5 py-10 max-w-2xl mx-auto">
           <Header />
           <Separator className="mt-5 mb-8" />
           {children}
