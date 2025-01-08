@@ -29,9 +29,10 @@ export const generateMetadata = async (
     return notFound();
   }
 
+  const title = `Blog | ${post.title}`;
   return {
     title: {
-      absolute: post.title,
+      absolute: title,
     },
     description: post.description,
     alternates: {
@@ -39,7 +40,7 @@ export const generateMetadata = async (
     },
     openGraph: {
       title: {
-        absolute: post.title,
+        absolute: title,
       },
       description: post.description,
       url: `/blog/${post.slug}`,
@@ -49,7 +50,9 @@ export const generateMetadata = async (
       modifiedTime: post.updatedAt,
     },
     twitter: {
-      title: post.title,
+      title: {
+        absolute: title,
+      },
       description: post.description,
       images: [post.thumbnailUrl, ...(parentMetadata.twitter?.images || [])],
     },
