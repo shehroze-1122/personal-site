@@ -4,14 +4,30 @@ import Section from "@/components/common/Section";
 import { getAllPosts } from "@/lib/api/posts";
 import PostCard from "@/components/common/PostCard";
 
+const title = "Blog";
+const description =
+  "Explore Shehroze Talat's in-depth tutorials, concept explainers, and insights on web and software engineering, designed to simplify complex topics and enhance your skills.";
+
 export const metadata: Metadata = {
-  title: "Blog",
-  description:
-    "Explore Shehroze Talat's in-depth tutorials, concept explainers, and insights on web and software engineering, designed to simplify complex topics and enhance your skills.",
+  title,
+  description,
+  alternates: {
+    canonical: "/blog",
+  },
   openGraph: {
-    title: "Blog",
-    description:
-      "Explore Shehroze Talat's in-depth tutorials, concept explainers, and insights on web and software engineering, designed to simplify complex topics and enhance your skills.",
+    title,
+    description,
+    url: "/blog",
+    images: ["/opengraph-blog.png"],
+    siteName: "Blog | Shehroze Talat",
+  },
+  twitter: {
+    title,
+    description,
+    images: ["/opengraph-blog.png"],
+    card: "summary_large_image",
+    site: "@shehrozett",
+    creator: "@shehrozett",
   },
 };
 
