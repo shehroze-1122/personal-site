@@ -1,15 +1,12 @@
-import clsx from "clsx";
 import React from "react";
-import { twMerge } from "tailwind-merge";
+import { mergeClasses } from "@/lib/utils";
 
 type CodeProps = React.ComponentPropsWithoutRef<"code">;
 
 function Code({ className, children, ...otherProps }: CodeProps) {
-  const classNames = twMerge(
-    clsx(
-      "px-[0.3rem] text-sm rounded-sm group-[&]:rounded-none group-[&]:[&>span[data-line]:first-child]:pt-4 group-[&]:[&>span[data-line]:last-child]:pb-4 group-[&]:[&>span[data-line]]:px-4",
-      className
-    )
+  const classNames = mergeClasses(
+    "px-[0.3rem] text-sm rounded-sm group-[&]:rounded-none group-[&]:[&>span[data-line]:first-child]:pt-4 group-[&]:[&>span[data-line]:last-child]:pb-4 group-[&]:[&>span[data-line]]:px-4",
+    className
   );
 
   return (

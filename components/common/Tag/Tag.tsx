@@ -1,15 +1,12 @@
-import clsx from "clsx";
 import React from "react";
-import { twMerge } from "tailwind-merge";
+import { mergeClasses } from "@/lib/utils";
 
 type TagProps = React.PropsWithChildren<React.ComponentPropsWithoutRef<"div">>;
 
 function Tag({ children, className, ...otherProps }: TagProps) {
-  const classNames = twMerge(
-    clsx(
-      "px-2.5 py-0.5 rounded-full text-xs bg-secondary text-highlight text-nowrap",
-      className
-    )
+  const classNames = mergeClasses(
+    "px-2.5 py-0.5 rounded-full text-xs bg-secondary text-highlight text-nowrap",
+    className
   );
 
   return (

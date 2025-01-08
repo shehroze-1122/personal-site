@@ -1,12 +1,12 @@
-import clsx from "clsx";
 import React from "react";
-import { twMerge } from "tailwind-merge";
+import { mergeClasses } from "@/lib/utils";
 
 type UlProps = React.ComponentPropsWithoutRef<"ul">;
 
 function Ul({ className, children, ...otherProps }: UlProps) {
-  const classNames = twMerge(
-    clsx("my-5 list-none list-inside marker:text-highlight", className)
+  const classNames = mergeClasses(
+    "my-5 list-none list-inside marker:text-highlight",
+    className
   );
 
   return (

@@ -1,14 +1,14 @@
-import clsx from "clsx";
 import React from "react";
-import { twMerge } from "tailwind-merge";
+import { mergeClasses } from "@/lib/utils";
 
 type TextSliderProps = {
   className?: string;
 };
 
 function TextSlider({ className }: TextSliderProps) {
-  const classNames = twMerge(
-    clsx("relative h-[1em] w-36 overflow-hidden", className)
+  const classNames = mergeClasses(
+    "relative h-[1em] w-36 overflow-hidden",
+    className
   );
 
   return (

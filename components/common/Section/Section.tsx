@@ -1,13 +1,12 @@
-import clsx from "clsx";
 import React from "react";
-import { twMerge } from "tailwind-merge";
+import { mergeClasses } from "@/lib/utils";
 
 type SectionProps = {
   title: string;
 } & React.ComponentPropsWithoutRef<"section">;
 
 function Section({ title, className, children, ...otherProps }: SectionProps) {
-  const classNames = twMerge(clsx("flex flex-col gap-5", className));
+  const classNames = mergeClasses("flex flex-col gap-5", className);
   return (
     <section {...otherProps} className={classNames}>
       <h2>{title}</h2>

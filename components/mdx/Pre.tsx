@@ -1,17 +1,14 @@
 "use client";
-import clsx from "clsx";
 import React, { useRef, useState } from "react";
+import { mergeClasses } from "@/lib/utils";
 import { Check, Clipboard } from "react-feather";
-import { twMerge } from "tailwind-merge";
 
 type PreProps = React.ComponentPropsWithoutRef<"pre">;
 
 function Pre({ className, children, ...otherProps }: PreProps) {
-  const classNames = twMerge(
-    clsx(
-      "group overflow-x-auto py-0 my-8 border border-secondary rounded-md",
-      className
-    )
+  const classNames = mergeClasses(
+    "group overflow-x-auto py-0 my-8 border border-secondary rounded-md",
+    className
   );
 
   const [isCopied, setIsCopied] = useState(false);

@@ -1,11 +1,10 @@
-import clsx from "clsx";
 import React from "react";
-import { twMerge } from "tailwind-merge";
+import { mergeClasses } from "@/lib/utils";
 
 type PProps = React.ComponentPropsWithoutRef<"p">;
 
 function P({ className, children, ...otherProps }: PProps) {
-  const classNames = twMerge(clsx("[&:not(:first-child)]:mt-6", className));
+  const classNames = mergeClasses("[&:not(:first-child)]:mt-6", className);
 
   return (
     <p {...otherProps} className={classNames}>

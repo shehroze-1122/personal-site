@@ -1,7 +1,6 @@
-import clsx from "clsx";
 import React from "react";
-import { twMerge } from "tailwind-merge";
 import { ArrowUpRight } from "react-feather";
+import { mergeClasses } from "@/lib/utils";
 type ExternalLinkProps = React.ComponentPropsWithoutRef<"a">;
 
 function ExternalLink({
@@ -9,11 +8,9 @@ function ExternalLink({
   children,
   ...otherProps
 }: ExternalLinkProps) {
-  const classNames = twMerge(
-    clsx(
-      "inline-flex flex-row gap-1 items-center text-highlight decoration-1 decoration-primary underline hover:decoration-4",
-      className
-    )
+  const classNames = mergeClasses(
+    "inline-flex flex-row gap-1 items-center text-highlight decoration-1 decoration-primary underline hover:decoration-4",
+    className
   );
   return (
     <a {...otherProps} target="_blank" className={classNames}>

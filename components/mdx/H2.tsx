@@ -1,15 +1,12 @@
-import clsx from "clsx";
 import React from "react";
-import { twMerge } from "tailwind-merge";
+import { mergeClasses } from "@/lib/utils";
 
 type H2Props = React.ComponentPropsWithoutRef<"h2">;
 
 function H2({ className, children, ...otherProps }: H2Props) {
-  const classNames = twMerge(
-    clsx(
-      "group relative my-8 scroll-m-8 font-extrabold text-highlight",
-      className
-    )
+  const classNames = mergeClasses(
+    "group relative my-8 scroll-m-8 font-extrabold text-highlight",
+    className
   );
 
   return (

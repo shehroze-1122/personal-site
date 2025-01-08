@@ -1,8 +1,7 @@
-import clsx from "clsx";
 import React from "react";
-import { twMerge } from "tailwind-merge";
 import ExternalLink from "../common/ExternalLink";
 import InternalLink from "../common/InternalLink";
+import { mergeClasses } from "@/lib/utils";
 
 type AProps = React.ComponentPropsWithoutRef<"a">;
 
@@ -17,7 +16,7 @@ function A({ className, children, ...otherProps }: AProps) {
       </a>
     );
   }
-  const classNames = twMerge(clsx("", className));
+  const classNames = mergeClasses("", className);
   if (!otherProps.href || otherProps.href.startsWith("http")) {
     return (
       <ExternalLink {...otherProps} className={classNames}>
