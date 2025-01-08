@@ -21,7 +21,8 @@ export default {
         mono: ["var(--font-geist-mono)"],
       },
       animation: {
-        slide: "slide 4s linear infinite",
+        slide: "slide 4s linear 1.3 forwards",
+        "slide-secondary": "slide 4s linear 1 forwards",
       },
       screens: {
         xs: "480px",

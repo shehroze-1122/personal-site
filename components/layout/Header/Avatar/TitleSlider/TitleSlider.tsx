@@ -16,7 +16,7 @@ function TextSlider({ className }: TextSliderProps) {
       <span className="absolute h-full w-full -translate-y-full animate-slide leading-none">
         Product Engineer
       </span>
-      <span className="absolute h-full w-full -translate-y-full animate-slide leading-none [animation-delay:2s]">
+      <span className="absolute h-full w-full -translate-y-full animate-slide-secondary leading-none [animation-delay:2s]">
         Full Stack Engineer
       </span>
     </div>
