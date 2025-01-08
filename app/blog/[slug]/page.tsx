@@ -4,14 +4,59 @@ import React from "react";
 import "./mdx.css";
 import PostHeader from "@/components/pages/blog/PostHeader";
 import PostFooter from "@/components/pages/blog/PostFooter";
+import { Metadata, ResolvingMetadata } from "next";
+
+type BlogPostPageProps = {
+  params: Promise<{ slug: string }>;
+};
 
 export const dynamicParams = false;
+
 export const generateStaticParams = () => {
   const posts = getAllPosts();
   return posts.map((post) => ({ slug: post.slug }));
 };
 
-async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+export const generateMetadata = async (
+  { params }: BlogPostPageProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> => {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
+  const parentMetadata = await parent;
+
+  if (!post) {
+    return notFound();
+  }
+
+  return {
+    title: {
+      absolute: post.title,
+    },
+    description: post.description,
+    alternates: {
+      canonical: `/blog/${post.slug}`,
+    },
+    openGraph: {
+      title: {
+        absolute: post.title,
+      },
+      description: post.description,
+      url: `/blog/${post.slug}`,
+      images: [post.thumbnailUrl, ...(parentMetadata.openGraph?.images || [])],
+      type: "article",
+      publishedTime: post.createdAt,
+      modifiedTime: post.updatedAt,
+    },
+    twitter: {
+      title: post.title,
+      description: post.description,
+      images: [post.thumbnailUrl, ...(parentMetadata.twitter?.images || [])],
+    },
+  };
+};
+
+async function BlogPostPage({ params }: BlogPostPageProps) {
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) {
