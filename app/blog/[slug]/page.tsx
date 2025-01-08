@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import React from "react";
 import "./mdx.css";
 import PostHeader from "@/components/pages/blog/PostHeader";
+import PostFooter from "@/components/pages/blog/PostFooter";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => {
@@ -26,6 +27,7 @@ async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
         createdAt={post.createdAt}
       />
       <Post />
+      <PostFooter updatedAt={post.updatedAt} />
     </article>
   );
 }
