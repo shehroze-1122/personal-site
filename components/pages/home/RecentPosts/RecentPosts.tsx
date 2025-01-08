@@ -13,11 +13,13 @@ function RecentPosts() {
         <PostCard
           key={post.slug}
           title={post.title}
+          description={post.description}
           tags={post.tags}
           slug={post.slug}
           minutesToRead={post.minutesToRead}
           thumbnailUrl={post.thumbnailUrl}
           createdAt={post.createdAt}
+          updatedAt={post.updatedAt}
         />
       ))}
       {recentPosts.length >= 3 && (
