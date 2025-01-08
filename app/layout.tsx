@@ -17,32 +17,35 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const title = {
+  default: "Shehroze Talat",
+  template: "%s | Shehroze",
+};
+
+const description =
+  "Shehroze Talat is a Full-Stack Software Engineer based in Germany. This is his personal website featuring his work experience, bio and tech blogs around web.";
+
 export const metadata: Metadata = {
-  title: {
-    default: "Shehroze Talat",
-    template: "%s | Shehroze",
-  },
-  description:
-    "Shehroze Talat is a Full-Stack Software Engineer based in Germany. This is his personal website featuring his work experience, bio and tech blogs around web.",
+  title,
+  description,
   metadataBase: new URL(config.baseUrl),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: {
-      default: "Shehroze Talat",
-      template: "%s | Shehroze",
-    },
-    description:
-      "Shehroze Talat is a Full-Stack Software Engineer based in Germany. This is his personal website featuring his work experience, bio and tech blogs around web.",
+    title,
+    description,
     url: config.baseUrl,
     siteName: "Shehroze Talat",
     images: ["/opengraph-default.png"],
   },
   twitter: {
+    title,
+    description,
     card: "summary_large_image",
     site: "@shehrozett",
     creator: "@shehrozett",
+    images: ["/opengraph-default.png"],
   },
   robots: {
     index: true,
