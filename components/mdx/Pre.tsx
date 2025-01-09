@@ -33,6 +33,7 @@ function Pre({ className, children, ...otherProps }: PreProps) {
         disabled={isCopied}
         onClick={handleClickCopy}
         className="absolute right-3 top-3 size-6 z-10"
+        aria-label="copy to clipboard"
       >
         {isCopied ? <Check className="text-green-400 " /> : <Clipboard />}
       </button>
