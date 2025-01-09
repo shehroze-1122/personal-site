@@ -5,7 +5,7 @@ type ButtonProps = React.ComponentPropsWithoutRef<"button">;
 
 function Button({ className, children, ...otherProps }: ButtonProps) {
   const classNames = mergeClasses(
-    "text-foreground bg-transparent border border-secondary rounded-lg px-2 py-1 transition-colors duration-200 hover:border-primary hover:text-highlight",
+    "text-foreground bg-secondary border border-secondary rounded-lg px-2 py-1 transition-colors duration-200 hover:border hover:border-primary hover:text-highlight",
     className
   );
   return (
