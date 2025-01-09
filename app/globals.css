@@ -7,7 +7,7 @@
   --foreground: #5b5b5b;
   --highlight: #000000;
   --primary: #0d9488;
-  --secondary: #c2c2c2;
+  --secondary: #dddddd;
 }
 
 html.dark {
@@ -15,7 +15,7 @@ html.dark {
   --foreground: #a1a1a1;
   --highlight: #ffffff;
   --primary: #2dd4bf;
-  --secondary: #374151;
+  --secondary: #1e1e1e;
 }
 
 body {
