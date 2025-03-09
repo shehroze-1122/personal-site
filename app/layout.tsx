@@ -67,6 +67,11 @@ export default function RootLayout({
             __html: `(${initTheme.toString()})()`,
           }}
         />
+        {/* Add the following meta tag for Google Search Console verification */}
+        <meta
+          name="google-site-verification"
+          content="KDh9V0skxx9G1Gssnz3LdNeUEhjhUn9qgxQik5-0sBk"
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen min-w-full`}
