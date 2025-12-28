@@ -94,7 +94,33 @@
         {
           "id": 1,
           "title": "WerkStudent Software Engineer",
-          "startDate": "2024-10-01"
+          "startDate": "2024-10-01",
+          "endDate": "2025-03-31",
+          "highlights": [
+            "Led the backend efforts for a operations management application with tailored interfaces for electricians and administrative staff. Implemented calendar-based booking, absence management and assignment.",
+            "Built features for assigning electricians to kiosks across Germany for rollout and maintenance projects, supported by an optimized route-planning engine that matched electricians to locations based on availability and base location to maximize daily coverage and operational efficiency.",
+            "Revamped the backend of our AI Concierge platform used to automate enterprise workflows. Implemented a fully self-hosted RAG pipeline to meet strict data-privacy requirements. Enhanced document analysis across ERP/CRM/SAP/Office365 data sources, improved automation to reduce manual workload and errors, and integrated semantic search."
+          ]
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "company": {
+        "name": "Mateo Estate GmbH",
+        "links": {
+          "website": "https://www.hellomateo.de/"
+        }
+      },
+      "experiences": [
+        {
+          "id": 1,
+          "title": "Senior Software Engineer",
+          "startDate": "2025-04-01",
+          "highlights": [
+            "hellomateo is an AI-powered messaging platform for SMEs that centrally and GDPR-compliantly bundles personalized customer communication across channels such as WhatsApp, Instagram, email, and SMS.",
+            "I am leading the efforts for integrating chat and live voice AI agents studio offering into the core omni-channel messaging platform."
+          ]
         }
       ]
     }
